@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: 'none',
+    mode: 'development',
     entry: {
         app: path.join(__dirname, 'src', 'index.tsx')
     },
@@ -13,14 +13,21 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: '/node_modules/'
+              test: /\.tsx?$/,
+              use: 'ts-loader',
+              exclude: '/node_modules/'
             },
             {
               test: /\.css$/i,
               use: ['style-loader', 'css-loader'],
-            },
+						},
+						{
+							test: /\.(png|jpe?g|gif|svg)$/i, // SVGs could be more optimized
+							loader: 'file-loader',
+							options: {
+								outputPath: 'assets'
+							}
+						}
         ],
     },
     output: {

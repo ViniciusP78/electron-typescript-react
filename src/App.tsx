@@ -2,8 +2,22 @@ import React from 'react';
 
 import './App.css';
 
+import electron from './assets/svgs/electron.svg';
+import typescript from './assets/svgs/ts.svg';
+import react from './assets/svgs/react.svg';
+
 const App = () => {
-    return <h1>Hello, world!</h1>
+  return (
+    <div className="app-container">
+			<div className="logos">
+				<img src={electron} alt="Electron"/>
+				<img src={typescript} alt="TypeScript"/>
+				<img src={react} alt="React"/>
+			</div>
+
+			<h1>Hello, world!</h1>
+    </div>
+	)
 }
 
 export default App
