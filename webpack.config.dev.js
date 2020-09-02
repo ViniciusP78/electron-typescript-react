@@ -1,12 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+let base_config = {
     mode: 'development',
-    entry: {
-        app: path.join(__dirname, 'src', 'index.tsx')
-    },
-    target: 'web',
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },
@@ -30,13 +26,32 @@ module.exports = {
 						}
         ],
     },
-    output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'dist')
-    },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'public', 'index.html')
-        })
+        }),
     ]
-}
+};
+
+module.exports = [
+  Object.assign({}, base_config, {
+    target: 'electron-main',
+    entry: {
+      main: path.join(__dirname, 'src', 'main.ts')
+    },
+    output: {
+      filename: '[name].js',
+      path: path.resolve(__dirname, 'dist')
+    },
+  }),
+  Object.assign({}, base_config, {
+    target: 'electron-renderer',
+    entry: {
+        app: path.join(__dirname, 'src', 'index.tsx')
+    },
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    },
+  })
+]

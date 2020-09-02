@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Boilerplate for an Electron software with React and TypeScript support.",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "start": "npm run build && electron ./index.js"
+    "build": "webpack --config webpack.config.dev.js",
+    "start": "npm run build && electron ./dist/main.js"
   },
   "keywords": [
     "Electron",
